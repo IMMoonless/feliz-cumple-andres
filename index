@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz Cumple Andrés 🇻🇪</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Impact, Arial Black;
+  background: linear-gradient(#ffeb3b, #0033a0, #d52b1e);
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 4rem;
+  text-shadow: 4px 4px 12px black;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.meme {
+  font-size: 2rem;
+  background: rgba(0,0,0,0.7);
+  padding: 15px;
+  border-radius: 20px;
+  margin: 10px auto;
+  width: 85%;
+  border: 2px solid gold;
+}
+
+img {
+  width: 250px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px gold;
+}
+
+.flag {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.maduro {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  animation: dance 0.5s infinite alternate;
+}
+
+@keyframes dance {
+  0% { transform: rotate(-8deg) scale(1); }
+  100% { transform: rotate(8deg) scale(1.1); }
+}
+
+.star {
+  position: fixed;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  from { top: -10%; }
+  to { top: 110%; }
+}
+
+#inflacion {
+  font-size: 3rem;
+  background: black;
+  padding: 15px;
+  display: inline-block;
+  border-radius: 15px;
+  border: 3px solid red;
+}
+
+button {
+  font-size: 1.5rem;
+  padding: 15px 30px;
+  background: red;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+}
+button:hover {
+  background: gold;
+  color: black;
+}
+</style>
+</head>
+
+<body>
+
+<img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Venezuela.svg">
+
+<h1>🎉 FELIZ CUMPLEAÑOS ANDRÉS 🎉</h1>
+<h2>🇻🇪 COMANDANTE SUPREMO DE LA PATRIA 🇻🇪</h2>
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXzXXjMQ9-WV7Og-UwA0b0cd16AQdvMki1Dw&s">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR11b2J_Nr55IiPc80JsNQvuB6o_cdxVJj6VQ&s">
+
+<div class="meme">🥇 La arepa es venezolana no jodá</div>
+<div class="meme">🔥 Viva Venezuela nojoda</div>
+<div class="meme">🤡 Naguará qué nivel este cumpleaños</div>
+<div class="meme">💀 La mala para Maracaibo, SOLO MÉRIDA</div>
+<div class="meme">⭐ 5 estrellas en Rappi, calidad bolivariana</div>
+
+<h2>📈 Índice oficial de inflación bolivariana</h2>
+<div id="inflacion">999999%</div>
+
+<br>
+<button onclick="expropiar()">¡OPRIME AQUÍ PARA EXPROPIAR!</button>
+<button onclick="vozMaduro()">🎤 Oprime aquí (Maduro te felicita)</button>
+
+<!-- Maduro bailando -->
+<img class="maduro" src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Nicol%C3%A1s_Maduro_2019.jpg">
+
+<!-- AUDIO HIMNO -->
+<audio id="himno" src="https://drive.google.com/uc?export=download&id=1Srmoc6FEeT0NvF-UBCK4sShk0UpVJ5fl"></audio>
+
+<script>
+// autoplay
+window.onload = () => {
+  const audio = document.getElementById("himno");
+  audio.volume = 0.5;
+  audio.play().catch(()=>console.log("Autoplay bloqueado 😭"));
+  lluvia();
+  inflacion();
+};
+
+// lluvia de estrellas
+function lluvia() {
+  setInterval(() => {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.innerHTML = "🇻🇪⭐";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (Math.random()*3+2)+"s";
+    document.body.appendChild(star);
+    setTimeout(()=>star.remove(), 5000);
+  }, 150);
+}
+
+// inflación cursed
+function inflacion() {
+  let valor = 999999;
+  setInterval(()=>{
+    valor = Math.floor(valor * 1.1);
+    document.getElementById("inflacion").innerText = valor + "%";
+  }, 200);
+}
+
+// EXPROPIAR
+function expropiar() {
+  alert("EL ESTADO SE QUEDÓ CON TU TORTA 🎂🇻🇪");
+  document.body.style.background = "black";
+}
+
+// VOZ MADURO TTS
+function vozMaduro() {
+  const msg = new SpeechSynthesisUtterance("Feliz cumpleaños Andrés. Que viva la patria, no jodá.");
+  msg.lang = "es-VE";
+  msg.pitch = 0.6;
+  msg.rate = 0.9;
+  speechSynthesis.speak(msg);
+}
+</script>
+
+</body>
+</html>
