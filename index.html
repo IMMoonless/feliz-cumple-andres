@@ -19,10 +19,6 @@ h1 {
   text-shadow: 4px 4px 12px black;
 }
 
-h2 {
-  font-size: 2rem;
-}
-
 .meme {
   font-size: 2rem;
   background: rgba(0,0,0,0.7);
@@ -31,12 +27,6 @@ h2 {
   margin: 10px auto;
   width: 85%;
   border: 2px solid gold;
-}
-
-img {
-  width: 250px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px gold;
 }
 
 .flag {
@@ -49,13 +39,13 @@ img {
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 200px;
-  animation: dance 0.5s infinite alternate;
+  width: 180px;
+  animation: dance 0.4s infinite alternate;
 }
 
 @keyframes dance {
-  0% { transform: rotate(-8deg) scale(1); }
-  100% { transform: rotate(8deg) scale(1.1); }
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
 }
 
 .star {
@@ -69,17 +59,8 @@ img {
   to { top: 110%; }
 }
 
-#inflacion {
-  font-size: 3rem;
-  background: black;
-  padding: 15px;
-  display: inline-block;
-  border-radius: 15px;
-  border: 3px solid red;
-}
-
 button {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   padding: 15px 30px;
   background: red;
   border: none;
@@ -92,6 +73,15 @@ button:hover {
   background: gold;
   color: black;
 }
+
+#inflacion {
+  font-size: 3rem;
+  background: black;
+  padding: 15px;
+  border-radius: 15px;
+  border: 3px solid red;
+  display: inline-block;
+}
 </style>
 </head>
 
@@ -102,67 +92,50 @@ button:hover {
 <h1>🎉 FELIZ CUMPLEAÑOS ANDRÉS 🎉</h1>
 <h2>🇻🇪 COMANDANTE SUPREMO DE LA PATRIA 🇻🇪</h2>
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXzXXjMQ9-WV7Og-UwA0b0cd16AQdvMki1Dw&s">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR11b2J_Nr55IiPc80JsNQvuB6o_cdxVJj6VQ&s">
-
 <div class="meme">🥇 La arepa es venezolana no jodá</div>
 <div class="meme">🔥 Viva Venezuela nojoda</div>
-<div class="meme">🤡 Naguará qué nivel este cumpleaños</div>
+<div class="meme">🤡 Naguará, qué nivel este cumpleaños</div>
 <div class="meme">💀 La mala para Maracaibo, SOLO MÉRIDA</div>
 <div class="meme">⭐ 5 estrellas en Rappi, calidad bolivariana</div>
 
-<h2>📈 Índice oficial de inflación bolivariana</h2>
+<h2>📈 Inflación oficial del cumpleaños</h2>
 <div id="inflacion">999999%</div>
 
 <br>
-<button onclick="expropiar()">¡OPRIME AQUÍ PARA EXPROPIAR!</button>
+<button onclick="activarHimno()">🔥 Oprime aquí para activar la patria</button>
 <button onclick="vozMaduro()">🎤 Oprime aquí (Maduro te felicita)</button>
 
-<!-- Maduro bailando -->
 <img class="maduro" src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Nicol%C3%A1s_Maduro_2019.jpg">
 
-<!-- AUDIO HIMNO -->
-<audio id="himno" src="https://drive.google.com/uc?export=download&id=1Srmoc6FEeT0NvF-UBCK4sShk0UpVJ5fl"></audio>
+<!-- AUDIO -->
+<audio id="himno" src="audio.mp3"></audio>
 
 <script>
-// autoplay
-window.onload = () => {
-  const audio = document.getElementById("himno");
-  audio.volume = 0.5;
-  audio.play().catch(()=>console.log("Autoplay bloqueado 😭"));
-  lluvia();
-  inflacion();
-};
-
-// lluvia de estrellas
-function lluvia() {
-  setInterval(() => {
-    let star = document.createElement("div");
-    star.className = "star";
-    star.innerHTML = "🇻🇪⭐";
-    star.style.left = Math.random() * 100 + "vw";
-    star.style.animationDuration = (Math.random()*3+2)+"s";
-    document.body.appendChild(star);
-    setTimeout(()=>star.remove(), 5000);
-  }, 150);
-}
+// lluvia patriótica
+setInterval(() => {
+  let star = document.createElement("div");
+  star.className = "star";
+  star.innerHTML = "🇻🇪⭐";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.animationDuration = (Math.random()*3+2)+"s";
+  document.body.appendChild(star);
+  setTimeout(()=>star.remove(), 5000);
+}, 150);
 
 // inflación cursed
-function inflacion() {
-  let valor = 999999;
-  setInterval(()=>{
-    valor = Math.floor(valor * 1.1);
-    document.getElementById("inflacion").innerText = valor + "%";
-  }, 200);
+let valor = 999999;
+setInterval(()=>{
+  valor = Math.floor(valor * 1.1);
+  document.getElementById("inflacion").innerText = valor + "%";
+}, 200);
+
+// activar himno
+function activarHimno() {
+  document.getElementById("himno").play();
+  alert("VIVA LA PATRIA NOJODÁ 🇻🇪🔥");
 }
 
-// EXPROPIAR
-function expropiar() {
-  alert("EL ESTADO SE QUEDÓ CON TU TORTA 🎂🇻🇪");
-  document.body.style.background = "black";
-}
-
-// VOZ MADURO TTS
+// Maduro TTS
 function vozMaduro() {
   const msg = new SpeechSynthesisUtterance("Feliz cumpleaños Andrés. Que viva la patria, no jodá.");
   msg.lang = "es-VE";
@@ -174,3 +147,4 @@ function vozMaduro() {
 
 </body>
 </html>
+
